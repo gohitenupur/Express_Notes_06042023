@@ -183,3 +183,24 @@ router.get('/', logger, (req,res)=>{
 //public folder m jo .html file h that will be rendered when this is called
 app.use(express.static("public"))
 ```
+
+<h3>Form submission</h3>
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Form</title>
+  </head>
+  <body>
+    <h1>My Form</h1>
+    <form method="POST" action="">
+      <label>
+        Name:
+        <input type="text" value=<% locals.name%> />
+      </label><br />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
+```
