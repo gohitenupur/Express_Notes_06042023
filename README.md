@@ -69,3 +69,35 @@ in script.ejs use like this
 </body>
 ```
 
+<h2>Express Routing</h2>
+
+```
+const express =  require('express');
+const app = express();
+
+app.set('view engine', 'ejs')
+
+const userRouter = require('./Routes/users');
+app.use('/users',userRouter) //first argument is common path, i.e Any url that starts with /users add all of these routes to the end of it
+app.listen(3000);
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+//user file in routes folder
+
+const express = require('express');
+const router = express.Router();
+
+router.get('/', (req,res)=>{
+    res.send('user home');
+})
+router.get('/new', (req,res)=>{
+    res.send('new user')
+})
+router.get('/data', (req,res)=>{
+    res.send('user data')
+})
+
+module.exports = router;
+
+// we did not use the path /user, /user/new & /user/data here because router understands that it's common & there's no need to repeat it.
+```
