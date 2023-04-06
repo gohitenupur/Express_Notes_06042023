@@ -112,6 +112,7 @@ module.exports = router;
 ```
 
 <h3>Chaining get,post & other methods for a url in express</h3>
+
 ```
 router.route('/:id').get((req,res)=>{
     res.send(`get user with id ${req.params.id}`);
@@ -135,5 +136,26 @@ router.post('/:id', (req,res)=>{
 router.delete('/:id', (req,res)=>{
     
     res.send(`delete user with id ${req.params.id}`);
+})
+```
+
+<h3>Middleware runs before rest of the code in the file</h3>
+
+```
+router.route('/:id').get((req,res)=>{
+    console.log(req.user)                   //used here to console log
+    res.send(`get user with id ${req.params.id}`);
+}).post((req,res)=>{
+    res.send(`post user with id ${req.params.id}`);
+}).delete((req,res)=>{
+    res.send(`delete user with id ${req.params.id}`);
+})
+
+
+const users = [{name:'user1'}, {name:"user2"}]
+-------------------------------------------------------------
+router.param("id", (req,res,next,id)=>{
+    req.user = users[id];                   // we added a property to the req object
+    next();                                 //next() wil allow the application to proceed further
 })
 ```
