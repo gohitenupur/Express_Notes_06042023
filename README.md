@@ -194,7 +194,7 @@ app.use(express.static("public"))
   </head>
   <body>
     <h1>My Form</h1>
-    <form method="POST" action="">
+    <form method="POST" action="/users">
       <label>
         Name:
         <input type="text" value=<% locals.name%> />
