@@ -47,6 +47,19 @@ npm i ejs//run in terminal to install view engine to facilitate rendering of htm
 
 app.set('view engine', 'ejs')  //outside app.get()
 
-app.render('script')// by default create a folder views & have .ejs files in it
+app.render('script') // by default create a folder views & have .ejs files in it(you dont have to specify path then)
+```
+**Looks like this**
+```
+const express =  require('express');
+const app = express();
+
+app.set('view engine', 'ejs')
+
+app.get('/', (req, res) => {
+    res.render('script')
+})
+
+app.listen(3000);
 ```
 
