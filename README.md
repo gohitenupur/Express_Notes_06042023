@@ -159,3 +159,13 @@ router.param("id", (req,res,next,id)=>{
     next();                                 //next() wil allow the application to proceed further
 })
 ```
+
+<h3>Another example</h3>
+```
+app.use(logger)
+
+function logger(req,res,next){
+    console.log(req.originalUrl);
+    next();
+}
+```
