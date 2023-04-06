@@ -28,14 +28,18 @@ const app = express();
 app.get('/', (req, res) => {
     res.sendStatus(200);
     res.send('ching chong');
-    // or
+----------------------------------------------
     res.status(200).send('ching chong');
-    or
+----------------------------------------------
     res.status(200).json({message:"chong ching")}
     res.json() sends a default success code as we eliminated the status request
+----------------------------------------------
+    res.download('index.js'); //can be used to send data to user that he can download, provide file path as argument
 })
 
 app.listen(3000);
 ```
 
-**NOTE- JSON.stringify() && JSON.parse(), convert from obj=>json string & from json string=>obj
+**NOTE- JSON.stringify() && JSON.parse(), convert from obj=>json string & from json string=>obj**
+
+
