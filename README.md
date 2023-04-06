@@ -170,4 +170,9 @@ function logger(req,res,next){
     console.log(req.originalUrl);
     next();
 }
+----------------------------------------
+
+router.get('/', logger, (req,res)=>{
+    res.send('user home');
+})
 ```
