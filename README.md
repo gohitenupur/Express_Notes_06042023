@@ -96,8 +96,44 @@ router.get('/new', (req,res)=>{
 router.get('/data', (req,res)=>{
     res.send('user data')
 })
+--------------------------------------------------------
+router.post('/', (req,res)=>{
+    res.send('user home post data');
+})
+--------------------------------------------------------
+router.get('/:id', (req,res)=>{         //any paramter after colon is dynamic & we can access it 
+    
+    res.send(`get user with id ${req.params.id}`);
+})
 
 module.exports = router;
 
 // we did not use the path /user, /user/new & /user/data here because router understands that it's common & there's no need to repeat it.
+```
+
+<h3>Chaining get,post & other methods for a url in express</h3>
+```
+router.route('/:id').get((req,res)=>{
+    res.send(`get user with id ${req.params.id}`);
+}).post((req,res)=>{
+    res.send(`post user with id ${req.params.id}`);
+}).delete((req,res)=>{
+    res.send(`delete user with id ${req.params.id}`);
+})
+
+Above code is replacement for code below
+----------------------------------------------------------
+
+router.get('/:id', (req,res)=>{
+    
+    res.send(`get user with id ${req.params.id}`);
+})
+router.post('/:id', (req,res)=>{
+    
+    res.send(`post user with id ${req.params.id}`);
+})
+router.delete('/:id', (req,res)=>{
+    
+    res.send(`delete user with id ${req.params.id}`);
+})
 ```
