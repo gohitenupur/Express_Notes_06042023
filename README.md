@@ -161,6 +161,7 @@ router.param("id", (req,res,next,id)=>{
 ```
 
 <h3>Another example</h3>
+Note: This middleware won't run first, maybe because it's a function
 
 ```
 app.use(logger)
