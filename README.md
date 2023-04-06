@@ -176,3 +176,9 @@ router.get('/', logger, (req,res)=>{
     res.send('user home');
 })
 ```
+
+<h3>Middleware for static page</h3>
+```
+//public folder m jo .html file h that will be rendered when this is called
+app.use(express.static("public"))
+```
