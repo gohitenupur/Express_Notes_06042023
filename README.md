@@ -42,4 +42,11 @@ app.listen(3000);
 
 **NOTE- JSON.stringify() && JSON.parse(), convert from obj=>json string & from json string=>obj**
 
+```
+npm i ejs//run in terminal to install view engine to facilitate rendering of html from server
+
+app.set('view engine', 'ejs')  //outside app.get()
+
+app.render('script')// by default create a folder views & have .ejs files in it
+```
 
