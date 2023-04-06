@@ -57,9 +57,15 @@ const app = express();
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-    res.render('script')
+    res.render('script', {text: "world"})
 })
 
 app.listen(3000);
+
+-------------------------------------------------------
+in script.ejs use like this
+<body>
+    hello <%= text %>
+</body>
 ```
 
