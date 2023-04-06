@@ -1,19 +1,19 @@
 {
-  "name": "express_notes_06042023",
+  "name": "express-crash-course",
   "version": "1.0.0",
-  "description": "express",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "devtest": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devStart": "nodemon server.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^3.1.9",
-    "express": "^4.18.2"
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.12"
   }
 }

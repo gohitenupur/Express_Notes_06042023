@@ -1,41 +1,50 @@
-const express = require('express');
+const express = require("express")
+const router = express.Router()
 
-const router = express.Router();
+router.use(logger)
 
-router.get('/', (req,res)=>{
-    res.send('user home');
-})
-router.get('/new', (req,res)=>{
-    res.send('new user')
-})
-router.get('/data', (req,res)=>{
-    res.send('user data')
+router.get("/", (req, res) => {
+  console.log(req.query.name)
+  res.send("User List")
 })
 
-router.post('/', (req,res)=>{
-    res.send('user home post data');
+router.get("/new", (req, res) => {
+  res.render("users/new")
 })
 
-
-router.route('/:id').get((req,res)=>{
-    console.log(req.user)                   //used here to console log
-    res.send(`get user with id ${req.params.id}`);
-}).post((req,res)=>{
-    res.send(`post user with id ${req.params.id}`);
-}).delete((req,res)=>{
-    res.send(`delete user with id ${req.params.id}`);
+router.post("/", (req, res) => {
+  const isValid = false
+  if (isValid) {
+    users.push({ firstName: req.body.firstName })
+    res.redirect(`/users/${users.length - 1}`)
+  } else {
+    console.log("Error")
+    res.render("users/new", { firstName: req.body.firstName })
+  }
 })
 
+router
+  .route("/:id")
+  .get((req, res) => {
+    console.log(req.user)
+    res.send(`Get User With ID ${req.params.id}`)
+  })
+  .put((req, res) => {
+    res.send(`Update User With ID ${req.params.id}`)
+  })
+  .delete((req, res) => {
+    res.send(`Delete User With ID ${req.params.id}`)
+  })
 
-const users = [{name:'user1'}, {name:"user2"}]
-
-router.param("id", (req,res,next,id)=>{
-    req.user = users[id];                   // we added a property to the req object
-    next();                                 //next() wil allow the application to proceed further
+const users = [{ name: "Kyle" }, { name: "Sally" }]
+router.param("id", (req, res, next, id) => {
+  req.user = users[id]
+  next()
 })
 
+function logger(req, res, next) {
+  console.log(req.originalUrl)
+  next()
+}
 
-
-module.exports = router;
-
-// we did not use the path /user, /user/new & /user/data here because router understands that it's common & there's no need to repeat it.
+module.exports = router
