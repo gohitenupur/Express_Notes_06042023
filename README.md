@@ -65,7 +65,7 @@ app.listen(3000);
 -------------------------------------------------------
 in script.ejs use like this
 <body>
-    hello <%= text %>
+    hello <%= locals.text || 'default' %>   //locals is an object, now if text is passed in express file it will be rendered & if it's not present 'default' will be
 </body>
 ```
 
