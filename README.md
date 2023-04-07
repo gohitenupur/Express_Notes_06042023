@@ -204,3 +204,17 @@ app.use(express.static("public"))
   </body>
 </html>
 ```
+
+<h3>Express Middleware</h3>
+
+**The express.urlencoded middleware parses incoming data and converts it into an object that can be accessed using req.body. The extended option of this middleware allows parsing of nested objects and arrays.**
+
+```
+app.use(express.urlencoded({ extended: false }));
+
+app.post('/login', (req, res) => {
+  console.log(req.body.username);
+  console.log(req.body.password);
+  res.send('Login Successful!');
+});
+```
