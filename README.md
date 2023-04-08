@@ -10,9 +10,14 @@ npm i express
 npm install --save-dev nodemon
 npm i dotenv
 
+------------------------------
+hoow to use
+const dotenv = require('dotenv').config()
+const port = process.env.PORT;
+------------------------------
 //add this too
 "scripts": {
-    "devtest": "nodemon index.js",
+    "devtest": "nodemon index.js",            //npm run devtest
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 
