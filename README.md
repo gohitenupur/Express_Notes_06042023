@@ -8,6 +8,7 @@ Express Notes
 npm init
 npm i express
 npm install --save-dev nodemon
+npm i dotenv
 
 //add this too
 "scripts": {
