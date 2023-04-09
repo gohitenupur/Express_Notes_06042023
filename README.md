@@ -224,3 +224,23 @@ app.post('/login', (req, res) => {
   res.send('Login Successful!');
 });
 ```
+
+<h3>How to handle formdata</h3>
+
+```
+const form = document.getElementById('myForm');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  
+  const response = await fetch('/upload', {
+      method: 'POST',
+      body: formData
+    });
+    
+    console.log(await response.json());
+});
+```
+
+
