@@ -227,6 +227,17 @@ app.post('/login', (req, res) => {
 
 <h3>How to handle formdata</h3>
 
+<h4>HTML</h4>
+
+```
+<form id="myForm" enctype="multipart/form-data">
+  <input type="text" name="name" />
+  <input type="file" name="photo" />
+  <button type="submit">Submit</button>
+</form>
+```
+<h4>JS</h4>
+
 ```
 const form = document.getElementById('myForm');
 
@@ -242,5 +253,40 @@ form.addEventListener('submit', async (e) => {
     console.log(await response.json());
 });
 ```
+
+<h4>Express</h4>
+
+```
+const express = require('express');
+const multer = require('multer');
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// It is a middleware function that parses incoming URL-encoded data (such as form data) and adds it to the req.body object. The { extended: false } option tells the middleware function to use the querystring library to parse the data, and to not parse nested objects.
+
+
+app.use(multer().single('photo'));
+
+app.post('/upload', (req, res) => {
+  const { name } = req.body;
+  const { filename, mimetype, size } = req.file;
+  
+  res.json({
+    name,
+    photo: {
+      filename,
+      mimetype,
+      size
+    }
+  });
+});
+
+app.listen(5000, () => {
+  console.log('Server started');
+});
+```
+
+
 
 
