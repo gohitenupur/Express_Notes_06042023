@@ -330,6 +330,12 @@ app.post('/text', (req, res) => {
   const data = req.body;
   res.send(`Received: ${data}`);
 });
+
+app.post('/',(req,res)=>{                        //recieving this - {"id1":"hello from json content"}
+    const {id1} = req.body;
+    res.json(id1);
+})
+
 ```
 
 
