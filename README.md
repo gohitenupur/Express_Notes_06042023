@@ -323,17 +323,21 @@ Note
 
 ```
 app.use(express.text());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 app.post('/text', (req, res) => {
   const data = req.body;
-  res.send(`Received: ${data}`);
+  res.send(`Received: ${data}`);                 //recieving this - "hello text data"
 });
+```
+
+
+```
+app.use(express.json());
 
 app.post('/',(req,res)=>{                        //recieving this - {"id1":"hello from json content"}
     const {id1} = req.body;
-    res.json(id1);
+    res.json(id1);                               //converts text to json string
+  //res.send({"id1": id1})                       //This also works
 })
 
 ```
