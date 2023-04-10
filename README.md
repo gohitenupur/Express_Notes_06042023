@@ -75,6 +75,17 @@ in script.ejs use like this
 </body>
 ```
 
+<h2>Middleware</h2>
+Note-
+<ul>
+<li>
+app.use() is an Express method used to mount middleware functions at a specified path. Middleware functions are functions that have access to the req (request) and res (response) objects, and can perform operations on them, modify them, or pass them on to the next middleware function in the stack.
+</li>
+<li>const express = require('express');
+const router = express.Router();</li>
+</ul>
+
+ 
 <h2>Express Routing</h2>
 
 ```
@@ -166,7 +177,7 @@ router.param("id", (req,res,next,id)=>{
 })
 ```
 
-<h3>Another example</h3>
+<h3>Another Middleware</h3>
 Note: This middleware won't run first, maybe because it's a function
 
 ```
@@ -190,7 +201,7 @@ router.get('/', logger, (req,res)=>{
 app.use(express.static("public"))
 ```
 
-<h3>Form submission</h3>
+<h4>Form submission(Not middleware related)</h4>
 
 ```
 <!DOCTYPE html>
@@ -211,9 +222,17 @@ app.use(express.static("public"))
 </html>
 ```
 
-<h3>Express Middleware</h3>
+<h3>URL encoded Middleware</h3>
+**Note**
+<ul>
+<li>
+app.use() is an Express method used to mount middleware functions at a specified path. Middleware functions are functions that have access to the req (request) and res (response) objects, and can perform operations on them, modify them, or pass them on to the next middleware function in the stack.
+</li>
+<li>
+The express.urlencoded middleware parses incoming data and converts it into an object that can be accessed using req.body. The extended option of this middleware allows parsing of nested objects and arrays.
+</li>
+</ul>
 
-**The express.urlencoded middleware parses incoming data and converts it into an object that can be accessed using req.body. The extended option of this middleware allows parsing of nested objects and arrays.**
 
 ```
 app.use(express.urlencoded({ extended: false }));
@@ -225,7 +244,13 @@ app.post('/login', (req, res) => {
 });
 ```
 
-<h3>How to handle formdata</h3>
+<h3>multer() MiddlewareHow to handle formdata</h3>
+
+**Note**
+<ul>
+<li>app.use(multer().single('photo')) is a middleware function in Express that handles file uploads and attaches the uploaded file to the req object as req.file.
+The 'photo' parameter specifies the name of the field that the file should be attached to in the form data.</li>
+</ul>
 
 <h4>HTML</h4>
 
@@ -263,7 +288,8 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// It is a middleware function that parses incoming URL-encoded data (such as form data) and adds it to the req.body object. The { extended: false } option tells the middleware function to use the querystring library to parse the data, and to not parse nested objects.
+// It is a middleware function that parses incoming URL-encoded data (such as form data) and adds it to the req.body object.
+The { extended: false } option tells the middleware function to use the querystring library to parse the data, and to not parse nested objects.
 
 
 app.use(multer().single('photo'));
@@ -287,6 +313,24 @@ app.listen(5000, () => {
 });
 ```
 
+<h3>Text middleware & JSON middleware</h3>
+
+Note
+<ul>
+<li>the middleware functions express.json(), express.text() express.urlencoded() have been integrated into the core of Express. These middleware functions can handle JSON and URL-encoded data without the need for an external middleware like body-parser.<li>
+</ul>
+
+
+```
+app.use(express.text());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.post('/text', (req, res) => {
+  const data = req.body;
+  res.send(`Received: ${data}`);
+});
+```
 
 
 
