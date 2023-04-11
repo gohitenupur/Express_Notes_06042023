@@ -371,6 +371,14 @@ app.post('/text', (req, res) => {
   res.send(`Received: ${data}`);                 //recieving this - "hello text data"
 });
 ```
+<h3>Express.static()</h3>
+<ul>
+<li>express.static() is a built-in middleware function in the Express framework for serving static files, such as HTML, CSS, JavaScript, and images. It is commonly used to serve client-side assets like web pages, stylesheets, and client-side scripts.</li>
+    </ul>
+    ```
+    // Serve static files from the "public" directory
+app.use(express.static('public'))
+```
 
 
 
