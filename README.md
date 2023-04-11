@@ -358,7 +358,17 @@ app.post('/text', (req, res) => {
   res.send(`Received: ${data}`);                 //recieving this - "hello text data"
 });
 ```
+<h3>Create a middleware function in Express(Custom)</h3>
+```
+// Middleware function
+const myMiddleware = (req, res, next) => {
+  console.log('This is my middleware!')
+  next()
+}
 
+// Register middleware function
+app.use(myMiddleware)           // always use it on the top
 
+```
 
 
