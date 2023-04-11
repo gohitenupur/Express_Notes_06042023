@@ -313,34 +313,52 @@ app.listen(5000, () => {
 });
 ```
 
-<h3>Text middleware & JSON middleware</h3>
+<h2>Text middleware & JSON middleware</h2>
+
 
 Note
 <ul>
 <li>the middleware functions express.json(), express.text() express.urlencoded() have been integrated into the core of Express. These middleware functions can handle JSON and URL-encoded data without the need for an external middleware like body-parser.<li>
 </ul>
 
+<h3>express.json()</h3>
+
+<ul>
+<li>express.json() is a middleware function that is used to parse incoming JSON data from the request body. It reads the JSON data from the request body, parses it, and then adds the parsed JSON data to the req object as req.body.</li>
+
+<li>res.json() is a method that is used to send JSON data in the response body. It takes an object or an array as an argument, and sends it as a JSON string in the response body with the appropriate Content-Type header.</li>
+</ul>
 
 ```
-app.use(express.text());
+app.use(express.json());                    //DATA RECIEVE KARTA H AUR REQUEST BODY M DAAL DETA H
+
+app.post('/', (req, res) => {
+  const { name, email } = req.body;
+  const newUser = {
+    id: Math.random().toString(),
+    name,
+    email
+  };
+  res.send(newUser)                        //JSON M CONVERT KARKE BHEJ DETA H
+//res.send(JSON.Stringify(newUser))        //MANUALLY AISE KARTE H
+//res.send({"id1": id1})                   //This also works
+```
+
+<h3>express.json()</h3>
+
+<ul>
+<li>express.text() is a middleware function in the Express framework used to parse incoming plain text data from the request body. It reads the text data from the request body, and then adds the parsed text data to the req object as req.body.</li>
+</ul>
+
+```
+app.use(express.text());                   //INCOMING TEXT DATA KO BODY SE UTHA KE REQ.BODY M ADD KARDIYA
 
 app.post('/text', (req, res) => {
-  const data = req.body;
+  const data = req.body;                  // YAHAN PE USE USE KAR LIYA
   res.send(`Received: ${data}`);                 //recieving this - "hello text data"
 });
 ```
 
-
-```
-app.use(express.json());
-
-app.post('/',(req,res)=>{                        //recieving this - {"id1":"hello from json content"}
-    const {id1} = req.body;
-    res.json(id1);                               //converts text to json string
-  //res.send({"id1": id1})                       //This also works
-})
-
-```
 
 
 
