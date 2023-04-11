@@ -177,8 +177,11 @@ router.param("id", (req,res,next,id)=>{
 })
 ```
 
-<h3>Another Middleware</h3>
-Note: This middleware won't run first, maybe because it's a function
+<h3>Custom Middleware</h3>
+
+<li>
+app.use() is an Express method used to mount middleware functions at a specified path. Middleware functions are functions that have access to the req (request) and res (response) objects, and can perform operations on them, modify them, or pass them on to the next middleware function in the stack.
+</li>
 
 ```
 app.use(logger)
@@ -226,11 +229,10 @@ app.use(express.static("public"))
 **Note**
 <ul>
 <li>
-app.use() is an Express method used to mount middleware functions at a specified path. Middleware functions are functions that have access to the req (request) and res (response) objects, and can perform operations on them, modify them, or pass them on to the next middleware function in the stack.
-</li>
-<li>
 The express.urlencoded middleware parses incoming data and converts it into an object that can be accessed using req.body. The extended option of this middleware allows parsing of nested objects and arrays.
 </li>
+<li>express.urlencoded({ extended: false }) is a middleware function in the Express framework used to parse incoming data from HTML forms in the request body. It reads the form data from the request body, and then adds the parsed data to the req object as req.body.</li>
+<li>It can be used to parse URL encoded data as well- URL-encoded data is a way of encoding key-value pairs, where each key-value pair is separated by an & symbol and the key and value are separated by an = symbol. This format is commonly used in HTML form submissions, but it can also be used in other contexts.</li>
 </ul>
 
 
@@ -241,6 +243,17 @@ app.post('/login', (req, res) => {
   console.log(req.body.username);
   console.log(req.body.password);
   res.send('Login Successful!');
+});
+```
+
+```
+key1=value1&key2=value2
+-------------------------------------------------------------------
+app.post('/api/data', (req, res) => {
+  const key1 = req.body.key1;
+  const key2 = req.body.key2;
+  console.log(key1, key2);
+  res.send('Received data: ' + key1 + ', ' + key2);
 });
 ```
 
